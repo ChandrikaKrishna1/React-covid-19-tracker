@@ -80,24 +80,66 @@ function LineGraph({ casesType, ...props }) {
     fetchData();
   }, [casesType]);
 
-  return (
-    <div className={props.className}>
-      {data?.length > 0 && (
-        <Line
-          data={{
-            datasets: [
-              {
-                backgroundColor: "rgba(204, 16,52, 0.5",
-                borderColor: "#CC1034",
-                data: data,
-              },
-            ],
-          }}
-          options={options}
-        />
-      )}
-    </div>
-  );
+  if (casesType === "cases") {
+    return (
+      <div className={props.className}>
+        {data?.length > 0 && (
+          <Line
+            data={{
+              datasets: [
+                {
+                  borderColor: "#CC1034",
+                  backgroundColor: "rgba(204, 16,52, 0.5",
+                  data: data,
+                },
+              ],
+            }}
+            options={options}
+          />
+        )}
+      </div>
+    );
+  } else if (casesType === "recovered") {
+    return (
+      <div className={props.className}>
+        {data?.length > 0 && (
+          <Line
+            data={{
+              datasets: [
+                {
+                  borderColor: "#7dd71d",
+                  backgroundColor: "rgba(125, 215, 29, 0.5",
+                  data: data,
+                },
+              ],
+            }}
+            options={options}
+          />
+        )}
+      </div>
+    );
+  } else {
+    {
+      return (
+        <div className={props.className}>
+          {data?.length > 0 && (
+            <Line
+              data={{
+                datasets: [
+                  {
+                    borderColor: "#fb4443",
+                    backgroundColor: "rgba(251, 68, 67, 0.5",
+                    data: data,
+                  },
+                ],
+              }}
+              options={options}
+            />
+          )}
+        </div>
+      );
+    }
+  }
 }
 
 export default LineGraph;
